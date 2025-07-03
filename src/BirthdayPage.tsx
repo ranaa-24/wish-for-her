@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Heart, Music, Volume2 } from "lucide-react"
 import her from "./assets/her.jpg";
-import song from "./assets/song.mp3"
+import song from "./assets/songg.mp3"
 
 
 type Stage =
