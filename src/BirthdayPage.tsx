@@ -34,7 +34,6 @@ export default function BirthdayPage() {
     "I realized I want to do something special.",
   ]
 
-  // Handle music prompt
   const handleMusicChoice = (choice: boolean) => {
     setMusicEnabled(choice)
     setStage("slideshow")
@@ -56,7 +55,6 @@ export default function BirthdayPage() {
     }
   }, [stage, currentSlide, slides.length])
 
-  // WhatsApp typing effect - slower
   useEffect(() => {
     if (stage === "whatsapp") {
       const message = "Happy Birthday! :)"
@@ -71,17 +69,16 @@ export default function BirthdayPage() {
             setShowOverlay(true)
           }, 1500)
         }
-      }, 150) // Slower typing
+      }, 150) 
       return () => clearInterval(timer)
     }
   }, [stage])
 
-  // Overlay messages effect - slower
   useEffect(() => {
     if (showOverlay && overlayStep < overlayMessages.length) {
       const timer = setTimeout(() => {
         setOverlayStep(overlayStep + 1)
-      }, 2500) // Slower overlay transitions
+      }, 2500) 
       return () => clearTimeout(timer)
     } else if (showOverlay && overlayStep >= overlayMessages.length) {
       setTimeout(() => setStage("emoji"), 1500)
@@ -113,7 +110,6 @@ export default function BirthdayPage() {
 
   return (
     <div className="min-h-screen max-w-full mx-auto bg-gradient-to-br from-pink-50 via-purple-25 to-rose-50 relative overflow-hidden">
-      {/* Background music */}
       {musicEnabled && (
         <audio autoPlay loop className="hidden">
           <source src={song} type="audio/mpeg" />
@@ -121,7 +117,6 @@ export default function BirthdayPage() {
       )}
 
       <AnimatePresence mode="wait">
-        {/* Music Prompt Stage */}
         {stage === "music-prompt" && (
           <motion.div
             key="music-prompt"
@@ -151,7 +146,6 @@ export default function BirthdayPage() {
           </motion.div>
         )}
 
-        {/* Slideshow Stage */}
         {stage === "slideshow" && (
           <motion.div key="slideshow" {...fadeInUp} className="flex items-center justify-center min-h-screen p-6">
             <motion.h1
@@ -166,7 +160,6 @@ export default function BirthdayPage() {
           </motion.div>
         )}
 
-        {/* WhatsApp Intro */}
         {stage === "whatsapp-intro" && (
           <motion.div
             key="whatsapp-intro"
@@ -186,7 +179,6 @@ export default function BirthdayPage() {
           </motion.div>
         )}
 
-        {/* WhatsApp Stage */}
         {stage === "whatsapp" && (
           <motion.div key="whatsapp" {...scaleIn} className="flex items-center justify-center min-h-screen p-4">
             <div className="w-full max-w-sm">
@@ -241,7 +233,6 @@ export default function BirthdayPage() {
           </motion.div>
         )}
 
-        {/* Emoji Stage */}
         {stage === "emoji" && (
           <motion.div
             key="emoji"
@@ -269,7 +260,6 @@ export default function BirthdayPage() {
           </motion.div>
         )}
 
-        {/* SO Text Stage */}
         {stage === "so-text" && (
           <motion.div
             key="so-text"
@@ -292,7 +282,6 @@ export default function BirthdayPage() {
           </motion.div>
         )}
 
-        {/* Balloons Stage */}
         {stage === "balloons" && (
           <motion.div
             key="balloons"
@@ -329,7 +318,6 @@ export default function BirthdayPage() {
               </button>
             </div>
 
-            {/* Floating Balloons */}
             {[...Array(4)].map((_, i) => (
               <motion.div
                 key={i}
@@ -351,7 +339,6 @@ export default function BirthdayPage() {
           </motion.div>
         )}
 
-        {/* Ice Cream Stage */}
         {stage === "ice-cream" && (
           <motion.div
             key="ice-cream"
@@ -403,7 +390,6 @@ export default function BirthdayPage() {
           </motion.div>
         )}
 
-        {/* Flower Gift Stage */}
         {stage === "flower-gift" && (
           <motion.div
             key="flower-gift"
@@ -456,7 +442,6 @@ export default function BirthdayPage() {
           </motion.div>
         )}
 
-        {/* Signature Stage */}
         {stage === "signature" && (
           <motion.div
             key="signature"
@@ -479,16 +464,15 @@ export default function BirthdayPage() {
         )}
       </AnimatePresence>
 
-      {/* Music Toggle */}
-      {musicEnabled && (
+      {
         <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="fixed top-4 right-4 bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-sm"
-        >
+        onClick={() => setMusicEnabled(p => !p)}>
           <Volume2 className="w-4 h-4 text-pink-500" />
         </motion.button>
-      )}
+      }
     </div>
   )
 }
