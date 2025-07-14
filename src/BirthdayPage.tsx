@@ -457,7 +457,7 @@ export default function BirthdayPage() {
                 className="border-t border-pink-200 pt-4"
               >
                 <p className="text-sm text-gray-600 italic">Yours truly</p>
-                <p className="text-lg text-pink-600 font-medium">Mr. Kharush</p>
+                <p className="text-lg text-pink-600 font-medium">Mr. penguinee</p>
               </motion.div>
             </div>
           </motion.div>
